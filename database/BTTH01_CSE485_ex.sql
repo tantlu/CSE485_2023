@@ -27,7 +27,7 @@ FROM tacgia, baiviet
 WHERE tacgia.ma_tgia = baiviet.ma_tgia
 GROUP BY ten_tgia
 ORDER BY Tacgianhieunhat DESC
-LIMIT 1;
+LIMIT 2;
 
 /*g. Liệt kê các bài viết về các bài hát có tựa bài hát chứa 1 trong các từ “yêu”, “thương”, “anh”,
 “em” */
