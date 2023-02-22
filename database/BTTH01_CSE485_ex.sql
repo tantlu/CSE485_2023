@@ -15,6 +15,8 @@ WHERE baiviet.ma_tgia = tacgia.ma_tgia AND baiviet.ma_tloai = theloai.ma_tloai
 
 /*e. Tìm thể loại có số bài viết nhiều nhất */
 
+/*f. Liệt kê 2 tác giả có số bài viết nhiều nhất*/
+
 
 /*g. Liệt kê các bài viết về các bài hát có tựa bài hát chứa 1 trong các từ “yêu”, “thương”, “anh”,
 “em” */
