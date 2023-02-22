@@ -14,9 +14,20 @@ FROM baiviet INNER JOIN theloai INNER JOIN tacgia
 WHERE baiviet.ma_tgia = tacgia.ma_tgia AND baiviet.ma_tloai = theloai.ma_tloai 
 
 /*e. Tìm thể loại có số bài viết nhiều nhất */
+SELECT ten_tloai, COUNT(*) AS soluongnhieunhat
+FROM baiviet, theloai
+WHERE baiviet.ma_tloai = theloai.ma_tloai
+GROUP BY ten_tloai
+ORDER BY soluongnhieunhat DESC
+LIMIT 2;
 
 /*f. Liệt kê 2 tác giả có số bài viết nhiều nhất*/
-
+SELECT ten_tgia, COUNT(*) AS Tacgianhieunhat
+FROM tacgia, baiviet
+WHERE tacgia.ma_tgia = baiviet.ma_tgia
+GROUP BY ten_tgia
+ORDER BY Tacgianhieunhat DESC
+LIMIT 1;
 
 /*g. Liệt kê các bài viết về các bài hát có tựa bài hát chứa 1 trong các từ “yêu”, “thương”, “anh”,
 “em” */
