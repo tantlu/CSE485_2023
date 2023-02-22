@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 22, 2023 lúc 05:07 PM
+-- Thời gian đã tạo: Th2 22, 2023 lúc 05:30 PM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.2.0
 
@@ -116,84 +116,32 @@ INSERT INTO `theloai` (`ma_tloai`, `ten_tloai`) VALUES
 --
 
 CREATE TABLE `users` (
-  `id_acc` int(10) UNSIGNED NOT NULL,
-  `account` varchar(50) NOT NULL,
-  `passwork` varchar(50) NOT NULL
+  `id_user` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `passwork` varchar(100) NOT NULL,
+  `admin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `users`
---
-
-INSERT INTO `users` (`id_acc`, `account`, `passwork`) VALUES
-(1, 'daylaquantriweb', 'abc');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc đóng vai cho view `vw_music`
--- (See below for the actual view)
---
-CREATE TABLE `vw_music` (
-`ma_bviet` int(10) unsigned
-,`tieude` varchar(200)
-,`ten_bhat` varchar(100)
-,`tomtat` text
-,`noidung` text
-,`ngayviet` datetime
-,`ten_tloai` varchar(50)
-,`ten_tgia` varchar(100)
-);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc cho view `vw_music`
---
-DROP TABLE IF EXISTS `vw_music`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_music`  AS SELECT `baiviet`.`ma_bviet` AS `ma_bviet`, `baiviet`.`tieude` AS `tieude`, `baiviet`.`ten_bhat` AS `ten_bhat`, `baiviet`.`tomtat` AS `tomtat`, `baiviet`.`noidung` AS `noidung`, `baiviet`.`ngayviet` AS `ngayviet`, `theloai`.`ten_tloai` AS `ten_tloai`, `tacgia`.`ten_tgia` AS `ten_tgia` FROM ((`baiviet` join `tacgia`) join `theloai`) WHERE `baiviet`.`ma_tloai` = `theloai`.`ma_tloai` AND `baiviet`.`ma_tgia` = `tacgia`.`ma_tgia``ma_tgia`  ;
 
 --
 -- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Chỉ mục cho bảng `baiviet`
---
-ALTER TABLE `baiviet`
-  ADD PRIMARY KEY (`ma_bviet`),
-  ADD KEY `ma_tloai` (`ma_tloai`),
-  ADD KEY `ma_tgia` (`ma_tgia`);
-
---
--- Chỉ mục cho bảng `tacgia`
---
-ALTER TABLE `tacgia`
-  ADD PRIMARY KEY (`ma_tgia`);
-
---
--- Chỉ mục cho bảng `theloai`
---
-ALTER TABLE `theloai`
-  ADD PRIMARY KEY (`ma_tloai`);
-
---
 -- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id_acc`);
+  ADD PRIMARY KEY (`id_user`);
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- Các ràng buộc cho bảng `baiviet`
+-- AUTO_INCREMENT cho bảng `users`
 --
-ALTER TABLE `baiviet`
-  ADD CONSTRAINT `baiviet_ibfk_1` FOREIGN KEY (`ma_tloai`) REFERENCES `theloai` (`ma_tloai`),
-  ADD CONSTRAINT `baiviet_ibfk_2` FOREIGN KEY (`ma_tgia`) REFERENCES `tacgia` (`ma_tgia`);
+ALTER TABLE `users`
+  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
