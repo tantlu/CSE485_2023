@@ -5,7 +5,7 @@ Select * from baiviet Where ma_tloai = "2"
 Select * from baiviet inner join tacgia on baiviet.ma_tgia = tacgia.ma_tgia Where tacgia.ten_tgia = "Nhacvietplus"
 
 /*c. Liệt kê các thể loại nhạc chưa có bài viết cảm nhận nào.*/
-
+SELECT * FROM theloai WHERE ma_tloai NOT IN (SELECT ma_tloai from baiviet GROUP by ma_tloai);
 
 /*d. Liệt kê các bài viết với các thông tin sau: mã bài viết, tên bài viết, tên bài hát, tên tác giả, tên
 thể loại, ngày viết.*/
