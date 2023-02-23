@@ -9,14 +9,10 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <?php 
-    // Bước 01: Kết nối tới DB Server
-    $conn = mysqli_connect('localhost','root','','btth01_cse485');
-    if(!$conn){
-        die('Kết nối tới Server lỗi');
-    }
-
+    <?php
+    include("includes/database_connection.php");
     ?>
+    
     <header>
     <?php require 'includes/header.php'; ?>
 
