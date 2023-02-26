@@ -1,3 +1,23 @@
+<?php 
+    require"condb.php";
+?>
+<?php 
+    if(isset($_POST["them"])){
+        $matl = $_POST["txtCatID"];
+        $tentl = $_POST["txtCatName"];
+
+        if($matl == ""){echo "Vui long nhap ma the loai <br/>";}
+        if($tentl == ""){echo "Vui long nhap ten the loai ";}
+
+        if($matl != "" && $tentl != ""){
+            $sql = "insert into theloai(ma_tloai,ten_tloai) values('$matl','$tentl')";
+            $qr = mysqli_query($conn,$sql);
+            header("location: category.php");
+        }
+
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,29 +30,6 @@
     <link rel="stylesheet" href="css/style_login.css">
 </head>
 <body>
-    <?php
-    $conn = mysqli_connect('localhost','root','','btth01_cse485');
-    if(!$conn){
-        die('Kết nối tới Server lỗi');
-    }
-
-
-    $count1 = "SELECT COUNT(ma_bviet) as dem1 FROM baiviet";
-    $result1 = mysqli_query($conn, $count1);
-    $row1 = mysqli_fetch_assoc($result1);
-
-    $count2 = "SELECT COUNT(ma_tgia) as dem2 FROM tacgia";
-    $result2 = mysqli_query($conn, $count2);
-    $row2 = mysqli_fetch_assoc($result2);
-
-    $count3 = "SELECT COUNT(ma_tloai) as dem3 FROM theloai";
-    $result3 = mysqli_query($conn, $count3);
-    $row3 = mysqli_fetch_assoc($result3);
-
-    $count4 = "SELECT COUNT(id) as dem4 FROM users";
-    $result4 = mysqli_query($conn, $count4);
-    $row4 = mysqli_fetch_assoc($result4);
-    ?>
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 bg-white rounded">
             <div class="container-fluid">
@@ -45,13 +42,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active fw-bold" aria-current="page" href="./">Trang chủ</a>
+                        <a class="nav-link" aria-current="page" href="./">Trang chủ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../index.php">Trang ngoài</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="category.php">Thể loại</a>
+                        <a class="nav-link active fw-bold" href="category.php">Thể loại</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="author.php">Tác giả</a>
@@ -68,60 +65,23 @@
     <main class="container mt-5 mb-5">
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
-            <div class="col-sm-3">
-                <div class="card mb-2" style="width: 100%;">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">
-                            <a href="" class="text-decoration-none">Người dùng</a>
-                        </h5>
-
-                        <h5 class="h1 text-center">
-                            <?php echo $row4['dem4']; ?>
-                        </h5>
+            <div class="col-sm">
+                <h3 class="text-center text-uppercase fw-bold">Thêm mới thể loại</h3>
+                <form  method="post" action="">
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Mã thể loại</span>
+                        <input type="text" class="form-control" name="txtCatID" >
                     </div>
-                </div>
-            </div>
-
-            <div class="col-sm-3">
-                <div class="card mb-2" style="width: 100%;">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">
-                            <a href="" class="text-decoration-none">Thể loại</a>
-                        </h5>
-
-                        <h5 class="h1 text-center">
-                            <?php echo $row3['dem3'];?>
-                        </h5>
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Tên thể loại</span>
+                        <input type="text" class="form-control" name="txtCatName" >
                     </div>
-                </div>
-            </div>
 
-            <div class="col-sm-3">
-                <div class="card mb-2" style="width: 100%;">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">
-                            <a href="" class="text-decoration-none">Tác giả</a>
-                        </h5>
-
-                        <h5 class="h1 text-center">
-                            <?php echo $row2['dem2'];?>
-                        </h5>
+                    <div class="form-group  float-end ">
+                        <input type="submit"  value="Thêm" class="btn btn-success" name="them">
+                        <a href="category.php" class="btn btn-warning ">Quay lại</a>
                     </div>
-                </div>
-            </div>
-
-            <div class="col-sm-3">
-                <div class="card mb-2" style="width: 100%;">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">
-                            <a href="" class="text-decoration-none">Bài viết</a>
-                        </h5>
-
-                        <h5 class="h1 text-center">
-                            <?php echo $row1['dem1']; ?>
-                        </h5>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </main>
