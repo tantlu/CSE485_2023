@@ -1,3 +1,39 @@
+<?php
+    require"condb.php";
+
+    
+?>
+<?php 
+    if(isset($_GET["id"])){
+        $id = $_GET["id"];
+    }
+?>
+
+<?php
+    $sql = "select * from theloai where ma_tloai = $id";
+    $qr = mysqli_query($conn,$sql);
+    $rows = mysqli_fetch_array($qr);
+?>
+
+
+<?php   
+   
+    if(isset($_POST["sua"])){
+
+        $tentl = $_POST["txtCatName"];
+
+        if($tentl == ""){echo "Vui long nhap ten the loai ";}
+
+        if($tentl != ""){
+            $sql = "update theloai set ten_tloai = '$tentl' where ma_tloai = $id";
+            $qr = mysqli_query($conn,$sql);
+            header("location: category.php");
+        }
+
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,19 +83,19 @@
         <div class="row">
             <div class="col-sm">
                 <h3 class="text-center text-uppercase fw-bold">Sửa thông tin thể loại</h3>
-                <form action="process_add_category.php" method="post">
+                <form method="post" action="" >
                 <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatId">Mã thể loại</span>
-                        <input type="text" class="form-control" name="txtCatId" readonly value="1">
+                        <input type="text" class="form-control" name="txtCatId" readonly value="<?php echo $rows['ma_tloai']; ?>">
                     </div>
 
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tên thể loại</span>
-                        <input type="text" class="form-control" name="txtCatName" value = "Nhạc trữ tình">
+                        <input type="text" class="form-control" name="txtCatName" value = "<?php echo $rows['ten_tloai'] ?>">
                     </div>
 
                     <div class="form-group  float-end ">
-                        <input type="submit" value="Lưu lại" class="btn btn-success">
+                        <input type="submit" value="Lưu lại" class="btn btn-success" name = "sua">
                         <a href="category.php" class="btn btn-warning ">Quay lại</a>
                     </div>
                 </form>

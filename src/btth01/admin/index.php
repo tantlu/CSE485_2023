@@ -10,6 +10,29 @@
     <link rel="stylesheet" href="css/style_login.css">
 </head>
 <body>
+    <?php
+    $conn = mysqli_connect('localhost','root','','btth01_cse485');
+    if(!$conn){
+        die('Kết nối tới Server lỗi');
+    }
+
+
+    $count1 = "SELECT COUNT(ma_bviet) as dem1 FROM baiviet";
+    $result1 = mysqli_query($conn, $count1);
+    $row1 = mysqli_fetch_assoc($result1);
+
+    $count2 = "SELECT COUNT(ma_tgia) as dem2 FROM tacgia";
+    $result2 = mysqli_query($conn, $count2);
+    $row2 = mysqli_fetch_assoc($result2);
+
+    $count3 = "SELECT COUNT(ma_tloai) as dem3 FROM theloai";
+    $result3 = mysqli_query($conn, $count3);
+    $row3 = mysqli_fetch_assoc($result3);
+
+    $count4 = "SELECT COUNT(id) as dem4 FROM users";
+    $result4 = mysqli_query($conn, $count4);
+    $row4 = mysqli_fetch_assoc($result4);
+    ?>
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 bg-white rounded">
             <div class="container-fluid">
@@ -53,7 +76,7 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            110
+                            <?php echo $row4['dem4']; ?>
                         </h5>
                     </div>
                 </div>
@@ -67,7 +90,7 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            10
+                            <?php echo $row3['dem3'];?>
                         </h5>
                     </div>
                 </div>
@@ -81,7 +104,7 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            20
+                            <?php echo $row2['dem2'];?>
                         </h5>
                     </div>
                 </div>
@@ -95,7 +118,7 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            110
+                            <?php echo $row1['dem1']; ?>
                         </h5>
                     </div>
                 </div>

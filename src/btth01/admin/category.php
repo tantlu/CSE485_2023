@@ -1,3 +1,6 @@
+<?php
+    require"condb.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,33 +53,31 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">Mã thể loại</th>
                             <th scope="col">Tên thể loại</th>
                             <th>Sửa</th>
                             <th>Xóa</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                            $sql = "select * from theloai";
+                            $qr = mysqli_query($conn,$sql);
+                            while($row = mysqli_fetch_array($qr)){
+                        ?>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Nhạc trữ tình</td>
+                            <th scope="row"><?php echo $row['ma_tloai']; ?></th>
+                            <td><?php echo $row['ten_tloai']; ?></td></td>
                             <td>
-                                <a href="edit_category.php?id=1"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
+                                <a href="edit_category.php?id=<?php echo $row['ma_tloai']; ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                            </td>   
                             <td>
-                                <a href=""><i class="fa-solid fa-trash"></i></a>
+                                <a href="delete_category.php?id=<?php echo $row['ma_tloai']; ?>"><i class="fa-solid fa-trash"></i></a>
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Nhạc cách mạng</td>
-                            <td>
-                                <a href="edit_category.php?id=2"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
-                            <td>
-                                <a href=""><i class="fa-solid fa-trash"></i></a>
-                            </td>
-                        </tr>
+                        <?php
+                            }
+                        ?>
                        
                     </tbody>
                 </table>
