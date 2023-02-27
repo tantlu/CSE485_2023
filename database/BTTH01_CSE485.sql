@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 23, 2023 lúc 08:09 AM
+-- Thời gian đã tạo: Th2 27, 2023 lúc 04:45 PM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.2.0
 
@@ -108,7 +108,8 @@ INSERT INTO `theloai` (`ma_tloai`, `ten_tloai`, `SLBaiViet`) VALUES
 (5, 'Nhạc quê hương', 0),
 (6, 'POP', 0),
 (7, 'Rock', 0),
-(8, 'R&B', 0);
+(8, 'R&B', 0),
+(10, 'thể loại 11', 0);
 
 -- --------------------------------------------------------
 
@@ -129,7 +130,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `passwork`, `admin`) VALUES
-(1, 'hieu', 'hieu', 'abc', 0);
+(1, 'hieu', 'hieu', 'abc', 0),
+(2, 'phat', 'hphat', 'abc', 0),
+(3, 'tan', 'dtan', 'abc', 0);
 
 -- --------------------------------------------------------
 
