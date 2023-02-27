@@ -29,7 +29,7 @@
     $result3 = mysqli_query($conn, $count3);
     $row3 = mysqli_fetch_assoc($result3);
 
-    $count4 = "SELECT COUNT(id) as dem4 FROM users";
+    $count4 = "SELECT COUNT(id_user) as dem4 FROM users";
     $result4 = mysqli_query($conn, $count4);
     $row4 = mysqli_fetch_assoc($result4);
     ?>
